@@ -28,9 +28,9 @@ Material:
     - _Metallic: 0
     - _NoiseFrequency: 0.32
     - _NoisePower: 2.16
-    - _NoiseScale: 1.47
+    - _NoiseScale: 1.56
     - _Tess: 8
-    - _TessMax: 20
+    - _TessMax: 30
     - _TessMin: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

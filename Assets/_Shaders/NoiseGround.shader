@@ -64,13 +64,15 @@ Shader "Custom/groundSurface"
             float3 v2 = v0.xyz + (bitangent * 0.01);
 
             float ns0 = _NoiseScale * snoise(float3(v0.x + _NoiseOffset.x, v0.y + _NoiseOffset.y, v0.z + _NoiseOffset.z) * _NoiseFrequency);
-            v0.xyz += ((pow(ns0, _NoisePower) + 1) / 2) * v.normal;
+            //v0.xyz += ((pow(ns0, _NoisePower) + 1) / 2) * v.normal;
+            //v1.xyz += ((sin(3.1 * pow(ns0, _NoisePower)) + 1) / 2) * v.normal;
+            v0.xyz += sin(3.1 * pow(((ns0 + 1) / 2), _NoisePower)) * v.normal;
 
             float ns1 = _NoiseScale * snoise(float3(v1.x + _NoiseOffset.x, v1.y + _NoiseOffset.y, v1.z + _NoiseOffset.z) * _NoiseFrequency);
-            v1.xyz += ((pow(ns1, _NoisePower) + 1) / 2) * v.normal;
+            v1.xyz += sin(3.1 * pow(((ns1 + 1) / 2), _NoisePower)) * v.normal;
 
             float ns2 = _NoiseScale * snoise(float3(v2.x + _NoiseOffset.x, v2.y + _NoiseOffset.y, v2.z + _NoiseOffset.z) * _NoiseFrequency);
-            v2.xyz += ((pow(ns2, _NoisePower) + 1) / 2) * v.normal;
+            v2.xyz += sin(3.1 * pow(((ns2 + 1) / 2), _NoisePower)) * v.normal;
 
             float3 vn = cross(v2 - v0.xyz, v1 - v0.xyz);
 
