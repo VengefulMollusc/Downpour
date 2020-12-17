@@ -58,24 +58,24 @@ Shader "Custom/groundSurface"
 
         void vert(inout appdata v)
         {
-            float3 v0 = v.vertex.xyz;
+            float4 v0 = mul(unity_ObjectToWorld, v.vertex);
             float3 bitangent = cross(v.tangent.xyz, v.normal);
-            float3 v1 = v0 + (v.tangent.xyz * 0.01);
-            float3 v2 = v0 + (bitangent * 0.01);
+            float3 v1 = v0.xyz + (v.tangent.xyz * 0.01);
+            float3 v2 = v0.xyz + (bitangent * 0.01);
 
             float ns0 = _NoiseScale * snoise(float3(v0.x + _NoiseOffset.x, v0.y + _NoiseOffset.y, v0.z + _NoiseOffset.z) * _NoiseFrequency);
-            v0.xyz += ((ns0 + 1) / 2) * v.normal;
+            v0.xyz += ((pow(ns0, _NoisePower) + 1) / 2) * v.normal;
 
             float ns1 = _NoiseScale * snoise(float3(v1.x + _NoiseOffset.x, v1.y + _NoiseOffset.y, v1.z + _NoiseOffset.z) * _NoiseFrequency);
-            v1.xyz += ((ns1 + 1) / 2) * v.normal;
+            v1.xyz += ((pow(ns1, _NoisePower) + 1) / 2) * v.normal;
 
             float ns2 = _NoiseScale * snoise(float3(v2.x + _NoiseOffset.x, v2.y + _NoiseOffset.y, v2.z + _NoiseOffset.z) * _NoiseFrequency);
-            v2.xyz += ((ns2 + 1) / 2) * v.normal;
+            v2.xyz += ((pow(ns2, _NoisePower) + 1) / 2) * v.normal;
 
-            float3 vn = cross(v2 - v0, v1 - v0);
+            float3 vn = cross(v2 - v0.xyz, v1 - v0.xyz);
 
             v.normal = normalize(vn);
-            v.vertex.xyz = v0;
+            v.vertex = mul(unity_WorldToObject, v0);
 
             /*float3 worldVert = mul(unity_ObjectToWorld, v.vertex).xyz;
             float noise = _NoiseScale * snoise(float3(worldVert.x + _NoiseOffset.x, worldVert.y + _NoiseOffset.y, worldVert.z + _NoiseOffset.z) * _NoiseFrequency);

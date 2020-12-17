@@ -26,9 +26,9 @@ Material:
     m_Floats:
     - _Glossiness: 0.5
     - _Metallic: 0
-    - _NoiseFrequency: 0.43
-    - _NoisePower: 1.55
-    - _NoiseScale: 1.16
+    - _NoiseFrequency: 0.32
+    - _NoisePower: 2.16
+    - _NoiseScale: 1.47
     - _Tess: 8
     - _TessMax: 20
     - _TessMin: 5
