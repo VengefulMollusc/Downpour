@@ -27,8 +27,11 @@ Material:
     - _Glossiness: 0.5
     - _Metallic: 0
     - _NoiseFrequency: 0.43
-    - _NoiseScale: 0.77
-    - _Tess: 4
+    - _NoisePower: 1.55
+    - _NoiseScale: 1.16
+    - _Tess: 8
+    - _TessMax: 20
+    - _TessMin: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseOffset: {r: 0, g: 0, b: 0, a: 0}
