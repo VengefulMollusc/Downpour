@@ -11,6 +11,7 @@ Shader "Custom/groundSurface"
         _TessMax ("Tessellation Max Distance", float) = 20
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _NormalMap ("Normal Map", 2d) = "bump" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _NoiseScale ("Noise Scale", Range(0,1)) = 1.0
@@ -41,7 +42,7 @@ Shader "Custom/groundSurface"
             float2 texcoord2 : TEXCOORD2;
         };
 
-        sampler2D _MainTex;
+        sampler2D _MainTex, _NormalMap;
 
         struct Input
         {
@@ -96,6 +97,8 @@ Shader "Custom/groundSurface"
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
+            // Normal
+            o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex));
         }
         ENDCG
     }
