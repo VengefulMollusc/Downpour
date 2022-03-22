@@ -28,10 +28,11 @@ Material:
     - _Metallic: 0
     - _NoiseFrequency: 0.32
     - _NoisePower: 2.16
-    - _NoiseScale: 1.56
-    - _Tess: 8
+    - _NoiseScale: 1
+    - _Tess: 4
     - _TessMax: 30
     - _TessMin: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

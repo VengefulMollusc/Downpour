@@ -1,5 +1,7 @@
 ﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
+// Created with help from https://www.youtube.com/watch?v=f-emLwDhI2E
+
 Shader "Custom/groundSurface"
 {
     Properties
@@ -11,7 +13,7 @@ Shader "Custom/groundSurface"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _NoiseScale ("Noise Scale", float) = 1
+        _NoiseScale ("Noise Scale", Range(0,1)) = 1.0
         _NoiseFrequency ("Noise Frequency", float) = 1
         _NoiseOffset ("Noise Offset", Vector) = (0,0,0,0)
         _NoisePower ("Noise Power function", float) = 1
@@ -35,6 +37,8 @@ Shader "Custom/groundSurface"
             float4 tangent : TANGENT;
             float3 normal : NORMAL;
             float2 texcoord : TEXCOORD0;
+            float2 texcoord1 : TEXCOORD1;
+            float2 texcoord2 : TEXCOORD2;
         };
 
         sampler2D _MainTex;
